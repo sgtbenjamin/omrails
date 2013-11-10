@@ -8,18 +8,32 @@
 				<span class="icon-bar"></span>
 			</a>
 
-			<a class="brand" href="#">Test Test</a>
+			<%= link_to "fmv", root_path, class: "brand" %>
 
 			<div class="nav-collapse collapse">
-				<ul class="nav">
+				<ul class="nav nav-tabs">
 					<li><%= link_to "Home", root_path %></li>
 					<li><%= link_to "About", about_path %></li>
 					<li><%= link_to "Contact", contact_path %></li>
-			</ul>
-			<ul class="nav pull-right">
-					<li><%= link_to "Login", '#' %></li>
-					
-			</ul>
+					<li class="dropdown">
+    				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+     				 Dropdown <span class="caret"></span>
+   				 </a>
+   				 <ul class="dropdown-menu">
+						<li><%= link_to "Product 1", root_path %></li>
+						<li><%= link_to "Product 2", about_path %></li>
+						<li><%= link_to "Product 3", contact_path %></li>
+   				 </ul>
+   			</ul>
+
+				<ul class="nav pull-right">
+					<% if user_signed_in? %>
+						<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+						<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+					<% else %>
+						<li><%= link_to "Login", new_user_session_path %></li>	
+					<% end %>
+				</ul>
 			</div>
 		</div>
 	</div>
